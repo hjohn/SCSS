@@ -10,7 +10,7 @@
   <description>
     Java Wrapper around the Dart SCSS compiler
   </description>
-  <url>https://github.com/hjohn/SCSS</url>
+  <url>https://github.com/int4-org/SCSS</url>
 
   <modules>
     <module>scss-compiler</module>
@@ -31,8 +31,8 @@
   </licenses>
 
   <scm>
-    <url>https://github.com/hjohn/SCSS.git</url>
-    <connection>scm:git:https://github.com/hjohn/SCSS.git</connection>
+    <url>https://github.com/int4-org/SCSS.git</url>
+    <connection>scm:git:https://github.com/int4-org/SCSS.git</connection>
   </scm>
 
   <developers>
