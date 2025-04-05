@@ -90,6 +90,10 @@ public class SCSSCompiler {
             }
             else {
               Files.copy(zis, entryPath);
+
+              if(entry.getName().endsWith("sass") || entry.getName().endsWith("dart")) {
+                entryPath.toFile().setExecutable(true);
+              }
             }
 
             zis.closeEntry();
