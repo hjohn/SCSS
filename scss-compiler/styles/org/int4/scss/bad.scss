@@ -1,0 +1,8 @@
+@use "colors";
+
+.container {
+  color: colors.$missing-color;
+  .header {
+    background-color: colors.$primary-color;
+  }
+}

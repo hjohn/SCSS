@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.int4.scss</groupId>
+    <artifactId>parent</artifactId>
+    <version>${revision}</version>
+  </parent>
+
+  <artifactId>scss-compiler</artifactId>
+  <packaging>jar</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+
+    <!-- Default version for SCSS compiler -->
+    <scss.version>1.86.1</scss.version>
+
+    <!-- Base URL for fetching the Dart-Sass binaries -->
+    <scss.url>https://github.com/sass/dart-sass/releases/download/${scss.version}</scss.url>
+
+    <!-- Directory for storing platform binaries -->
+    <platform.binaries.dir>${project.build.directory}/platform-binaries</platform.binaries.dir>
+    <platform.archives.dir>${project.build.directory}/platform-archives</platform.archives.dir>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>3.25.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.10.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>wagon-maven-plugin</artifactId>
+        <version>2.0.2</version>
+        <executions>
+          <execution>
+            <id>download-windows</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>download-single</goal>
+            </goals>
+            <configuration>
+              <!-- Download the SCSS binaries for all platforms -->
+              <url>${scss.url}/dart-sass-${scss.version}-windows-x64.zip</url>
+              <toDir>${platform.archives.dir}</toDir>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>download-macos</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>download-single</goal>
+            </goals>
+            <configuration>
+              <url>${scss.url}/dart-sass-${scss.version}-macos-x64.tar.gz</url>
+              <toDir>${platform.archives.dir}</toDir>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>download-macos-aarch64</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>download-single</goal>
+            </goals>
+            <configuration>
+              <url>${scss.url}/dart-sass-${scss.version}-macos-arm64.tar.gz</url>
+              <toDir>${platform.archives.dir}</toDir>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>download-linux</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>download-single</goal>
+            </goals>
+            <configuration>
+              <url>${scss.url}/dart-sass-${scss.version}-linux-x64.tar.gz</url>
+              <toDir>${platform.archives.dir}</toDir>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>unzip-untart</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <unzip src="${platform.archives.dir}/dart-sass-${scss.version}-windows-x64.zip" dest="${platform.archives.dir}/windows-amd64" />
+
+                <gunzip src="${platform.archives.dir}/dart-sass-${scss.version}-macos-x64.tar.gz" dest="${platform.archives.dir}/macos.tar" />
+                <untar src="${platform.archives.dir}/macos.tar" dest="${platform.archives.dir}/macos-amd64" />
+
+                <gunzip src="${platform.archives.dir}/dart-sass-${scss.version}-macos-arm64.tar.gz" dest="${platform.archives.dir}/macos-arm64.tar" />
+                <untar src="${platform.archives.dir}/macos-arm64.tar" dest="${platform.archives.dir}/macos-aarch64" />
+
+                <gunzip src="${platform.archives.dir}/dart-sass-${scss.version}-linux-x64.tar.gz" dest="${platform.archives.dir}/linux.tar" />
+                <untar src="${platform.archives.dir}/linux.tar" dest="${platform.archives.dir}/linux-amd64" />
+
+                <zip destfile="${project.build.directory}/classes/dart-sass-windows-amd64.zip">
+                  <fileset dir="${platform.archives.dir}/windows-amd64">
+                    <include name="**/*" />
+                  </fileset>
+                </zip>
+
+                <zip destfile="${project.build.directory}/classes/dart-sass-macos-amd64.zip">
+                  <fileset dir="${platform.archives.dir}/macos-amd64">
+                    <include name="**/*" />
+                  </fileset>
+                </zip>
+
+                <zip destfile="${project.build.directory}/classes/dart-sass-macos-aarch64.zip">
+                  <fileset dir="${platform.archives.dir}/macos-aarch64">
+                    <include name="**/*" />
+                  </fileset>
+                </zip>
+
+                <zip destfile="${project.build.directory}/classes/dart-sass-linux-amd64.zip">
+                  <fileset dir="${platform.archives.dir}/linux-amd64">
+                    <include name="**/*" />
+                  </fileset>
+                </zip>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.1.0</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+
