@@ -24,9 +24,10 @@
 
   <licenses>
     <license>
-      <name>The BSD 2-Clause License</name>
-      <url>http://opensource.org/licenses/BSD-2-Clause</url>
+      <name>MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
       <distribution>repo</distribution>
+      <comments>This project is licensed under the MIT License. Dart SCSS compiler binaries included in this project are also licensed under the MIT License.</comments>
     </license>
   </licenses>
 

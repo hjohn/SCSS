@@ -3,7 +3,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.int4.scss/scss-compiler/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.int4.scss/scss-compiler)
 [![Build Status](https://github.com/int4-org/SCSS/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/int4-org/SCSS/actions)
 [![Coverage](https://codecov.io/gh/int4-org/SCSS/branch/master/graph/badge.svg?token=QCNNRFYF98)](https://codecov.io/gh/int4-org/SCSS)
-[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![javadoc](https://javadoc.io/badge2/org.int4.scss/parent/javadoc.svg)](https://javadoc.io/doc/org.int4.scss/parent)
 
 A compiler for SCSS files that can be easily used from Java code. It uses the
@@ -118,21 +118,10 @@ public class CustomErrorHandlingExample {
 
 This allows you to log or handle issues in a way that suits your application's needs while maintaining control over how errors are propagated.
 
-# BSD License
-
-Copyright (c) 2025, John Hendrikx
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
 # Dependencies and Acknowledgments
 
 ### Dart Sass
 
-License: MIT License
-https://github.com/sass/dart-sass
+- **License**: MIT License
+- **URL**: [https://github.com/sass/dart-sass](https://github.com/sass/dart-sass)
+- **Description**: This project includes the Dart SCSS compiler binaries, which are licensed under the MIT License.
