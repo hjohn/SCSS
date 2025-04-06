@@ -17,7 +17,7 @@
     <maven.compiler.target>21</maven.compiler.target>
 
     <!-- Default version for SCSS compiler -->
-    <scss.version>1.86.1</scss.version>
+    <scss.version>1.86.3</scss.version>
 
     <!-- Base URL for fetching the Dart-Sass binaries -->
     <scss.url>https://github.com/sass/dart-sass/releases/download/${scss.version}</scss.url>
